@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackSmash - Learn the Stack, Smash the Track</title>
+    <meta name="description" content="Master Full Stack Development with interactive lessons, real-time code execution, and peer challenges. Perfect for B.Tech students.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold">StackSmash</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#technologies" class="hover:text-blue-600 transition-colors">Technologies</a>
+                    <a href="#about" class="hover:text-blue-600 transition-colors">About</a>
+                    <a href="auth/login.html" class="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors">Login</a>
+                    <a href="auth/signup.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Get Started</a>
+                    <a href="auth/profile.html" id="profile-link" class="px-4 py-2 text-green-600 border border-green-600 rounded-lg hover:bg-green-600 hover:text-white transition-colors hidden">My Profile</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="dark-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="voice-toggle" class="p-2 rounded-lg bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-800 transition-colors">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden" style="background: linear-gradient(120deg, #4f46e5 0%, #f59e42 100%); min-height: 480px;">
+        <div class="absolute inset-0 opacity-30" style="background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]" style="text-shadow: 0 4px 24px rgba(0,0,0,0.7), 0 2px 0 #222;">
+                        Learn the Stack,<br>
+                        <span class="text-yellow-300" style="text-shadow: 0 2px 8px #b45309, 0 2px 0 #222;">Smash</span> the Track
+                    </h1>
+                    <p class="text-2xl font-semibold mb-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                        Master Full Stack Development with interactive lessons, real-time code execution, and peer challenges. Perfect for B.Tech students ready to build the future.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="compiler/editor.html" class="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <i class="fas fa-play mr-2"></i>Start Coding Now
+                        </a>
+                        <a href="#technologies" class="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <i class="fas fa-book mr-2"></i>Explore Technologies
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-6 text-white drop-shadow-md">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-users text-2xl"></i>
+                            <span class="font-semibold">10K+ Students</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-code text-2xl"></i>
+                            <span class="font-semibold">50+ Languages</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-trophy text-2xl"></i>
+                            <span class="font-semibold">1000+ Challenges</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="floating">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 max-w-sm">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <pre class="text-sm text-gray-800 dark:text-gray-200"><code>function learnStack() {
+  const skills = ['HTML', 'CSS', 'JS'];
+  const backend = ['Python', 'Node.js'];
+  
+  return skills.concat(backend);
+}
+
+console.log('Welcome to StackSmash!');</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Dashboard Preview (Only shown when logged in) -->
+    <section id="student-dashboard" class="py-16 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Welcome Back, <span id="student-name">Student</span>! 👋</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Continue your learning journey where you left off</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Quick Stats -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                            <i class="fas fa-chart-line text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 dark:text-white">Your Progress</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Level <span id="student-level">1</span> • <span id="student-xp">0</span> XP</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-700 dark:text-gray-300">Lessons Completed</span>
+                            <span class="font-semibold text-gray-900 dark:text-white" id="lessons-completed">0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-700 dark:text-gray-300">Challenges Won</span>
+                            <span class="font-semibold text-gray-900 dark:text-white" id="challenges-won">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-green-600 dark:text-green-400 text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">Last completed lesson</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400" id="last-activity">No activity yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <a href="compiler/editor.html" class="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors">
+                            <i class="fas fa-code text-blue-600 dark:text-blue-400"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">Continue Coding</span>
+                        </a>
+                        <a href="auth/profile.html" class="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors">
+                            <i class="fas fa-user text-green-600 dark:text-green-400"></i>
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">View Full Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);">
+      <div class="absolute inset-0 bg-black opacity-10"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-lg">Why Choose StackSmash?</h2>
+          <p class="text-xl text-white drop-shadow-md">Everything you need to become a Full Stack Developer</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Interactive Learning -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-2xl font-bold text-indigo-600 mb-2">📘 Interactive Learning</h2>
+            <p class="text-gray-600 text-base mb-4 text-center">Practice by coding in real-time with our integrated editor. Get instant feedback and learn by doing, not just reading.</p>
+            <button onclick="toggleLessons()" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2 rounded transition mb-2">
+              Show / Hide Lessons
+            </button>
+            <div id="lessonList" class="hidden w-full mt-2 space-y-4">
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 1: Introduction to HTML</h3><p class="text-gray-600 text-sm">Understand how HTML structures the web and learn about basic tags.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 2: HTML Tags & Structure</h3><p class="text-gray-600 text-sm">Learn about headings, paragraphs, links, images, and page layout.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 3: HTML Forms & Inputs</h3><p class="text-gray-600 text-sm">Create interactive forms using inputs, buttons, and form elements.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 4: Introduction to CSS</h3><p class="text-gray-600 text-sm">Style your webpage using colors, fonts, borders, and spacing.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 5: CSS Selectors & Properties</h3><p class="text-gray-600 text-sm">Master the art of selecting elements and applying visual changes.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 6: Flexbox & Grid</h3><p class="text-gray-600 text-sm">Build responsive layouts using Flexbox and CSS Grid.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 7: Responsive Design</h3><p class="text-gray-600 text-sm">Make your website mobile-friendly with media queries.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 8: JavaScript Basics</h3><p class="text-gray-600 text-sm">Learn about variables, data types, and writing your first script.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 9: JS Functions & Events</h3><p class="text-gray-600 text-sm">Write functions and handle click, hover, and input events.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 10: DOM Manipulation</h3><p class="text-gray-600 text-sm">Change HTML/CSS dynamically using JavaScript DOM methods.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 11: Loops & Conditionals</h3><p class="text-gray-600 text-sm">Control program flow using loops and if-else statements.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 12: Introduction to React</h3><p class="text-gray-600 text-sm">Build dynamic UIs with reusable components using React.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 13: React Props & State</h3><p class="text-gray-600 text-sm">Pass data and manage component behavior with props and state.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 14: Handling Events in React</h3><p class="text-gray-600 text-sm">Learn how to handle click and form events using React handlers.</p></div>
+              <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">Lesson 15: Build a Mini Project</h3><p class="text-gray-600 text-sm">Apply what you've learned to build a simple portfolio or todo app.</p></div>
+            </div>
+          </div>
+          <!-- Peer Challenges -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-pink-600 text-center mb-2">🏆 Peer Challenges</h2>
+            <p class="text-gray-700 text-center text-lg mb-4">Challenge friends via WhatsApp, compete in live code battles, and climb the leaderboard together!</p>
+            <div class="flex justify-center w-full mb-2">
+              <a href="https://api.whatsapp.com/send?text=Join%20me%20in%20a%20coding%20challenge%20on%20StackSmash!" target="_blank" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-5 py-2 rounded transition">📤 Invite via WhatsApp</a>
+            </div>
+            <button onclick="toggleChallenges()" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2 rounded transition mb-2">Show / Hide Challenges</button>
+            <div id="challengeList" class="hidden w-full mt-2">
+              <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">1. JavaScript Loops</h3><p class="text-sm text-gray-600">Print all even numbers between 1 and 100.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">2. Reverse String (Python)</h3><p class="text-sm text-gray-600">Reverse a string without using slicing or built-in methods.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">3. SQL Top Earners</h3><p class="text-sm text-gray-600">Get the top 3 highest-paid employees per department.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">4. HTML Layout</h3><p class="text-sm text-gray-600">Recreate a YouTube homepage layout using HTML & CSS.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">5. React Counter App</h3><p class="text-sm text-gray-600">Build a counter app using useState hook in React.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">6. REST API Builder</h3><p class="text-sm text-gray-600">Create an API to manage tasks with CRUD operations.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">7. CSS Flex Layout</h3><p class="text-sm text-gray-600">Design a responsive navbar using flexbox only.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">8. Fibonacci Series</h3><p class="text-sm text-gray-600">Generate first N Fibonacci numbers using loops.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">9. Login Form Validation</h3><p class="text-sm text-gray-600">Build a login form with frontend validation using JavaScript.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">10. Java OOP</h3><p class="text-sm text-gray-600">Create a class for Student and perform CRUD operations.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">11. API Weather Fetch</h3><p class="text-sm text-gray-600">Use OpenWeather API to display weather by city.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">12. Bubble Sort (C++)</h3><p class="text-sm text-gray-600">Write a program to sort an array using bubble sort algorithm.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">13. To-Do App (Vue.js)</h3><p class="text-sm text-gray-600">Create a to-do list with add, edit, and delete features using Vue.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">14. Palindrome Check</h3><p class="text-sm text-gray-600">Check if a string is a palindrome using a function.</p></div>
+                <div class="bg-pink-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-pink-700">15. Timer App</h3><p class="text-sm text-gray-600">Build a countdown timer in JavaScript with alert when done.</p></div>
+              </div>
+            </div>
+          </div>
+          <!-- Voice Navigation -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-indigo-600 text-center mb-2">🎙 Voice Navigation</h2>
+            <p class="text-gray-700 text-center text-lg mb-4">Navigate the platform hands-free. Say commands like <strong>"Open Python"</strong> or <strong>"Start Challenge"</strong> for accessibility and speed.</p>
+            <button onclick="toggleCommands()" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2 rounded transition mb-2">Show / Hide Voice Commands</button>
+            <div id="voiceCommandList" class="hidden w-full mt-2">
+              <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">1. "Open HTML"</h3><p class="text-sm text-gray-600">Navigate to HTML lessons.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">2. "Open Python"</h3><p class="text-sm text-gray-600">Jump directly to Python lessons.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">3. "Start Challenge"</h3><p class="text-sm text-gray-600">Begin the latest coding challenge.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">4. "Open Leaderboard"</h3><p class="text-sm text-gray-600">View your rank and coding stats.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">5. "Next Lesson"</h3><p class="text-sm text-gray-600">Proceed to the next lesson.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">6. "Go Back"</h3><p class="text-sm text-gray-600">Return to the previous page.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">7. "Open JavaScript"</h3><p class="text-sm text-gray-600">Navigate to JavaScript tutorials.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">8. "Open Dashboard"</h3><p class="text-sm text-gray-600">Go to your profile & progress.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">9. "Enable Dark Mode"</h3><p class="text-sm text-gray-600">Switch to dark theme interface.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">10. "Disable Dark Mode"</h3><p class="text-sm text-gray-600">Revert to light theme.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">11. "Read Instructions"</h3><p class="text-sm text-gray-600">Listen to challenge description aloud.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">12. "Submit Code"</h3><p class="text-sm text-gray-600">Automatically submit your code.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">13. "Search Python"</h3><p class="text-sm text-gray-600">Search topics inside Python track.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">14. "Help Me"</h3><p class="text-sm text-gray-600">Trigger voice-based help assistant.</p></div>
+                <div class="bg-indigo-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-indigo-700">15. "Logout"</h3><p class="text-sm text-gray-600">Safely sign out of your account.</p></div>
+              </div>
+            </div>
+          </div>
+          <!-- Multilingual Support -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-green-600 text-center mb-2">🌐 Multilingual Support</h2>
+            <p class="text-gray-700 text-center text-lg mb-4">Switch between <strong>15 Indian Languages</strong>. Lessons and UI adapt to your preferred language for improved understanding and inclusivity.</p>
+            <button onclick="toggleLanguages()" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded transition mb-2">Show / Hide Available Languages</button>
+            <div id="languageList" class="hidden w-full mt-2">
+              <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">English</h3><p class="text-sm text-gray-600">Default language for UI and content.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">हिन्दी (Hindi)</h3><p class="text-sm text-gray-600">पूरा कोर्स और इंटरफ़ेस हिन्दी में उपलब्ध है।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">తెలుగు (Telugu)</h3><p class="text-sm text-gray-600">మొత్తం కోర్సు మరియు ఇంటర్ఫేస్ తెలుగు లో అందుబాటులో ఉంది.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">தமிழ் (Tamil)</h3><p class="text-sm text-gray-600">UI மற்றும் பாடங்கள் தமிழ் மொழியில் ல஭್யவில்லை.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">বাংলা (Bengali)</h3><p class="text-sm text-gray-600">সব পাঠ এবং UI বাংলায় পাওয়া যায়।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">মরाठी (Marathi)</h3><p class="text-sm text-gray-600">संपूर्ण इंटरफेस आणि अभ्यासक्रम मराठीत उपलब्ध आहे.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">ગુજરાતી (Gujarati)</h3><p class="text-sm text-gray-600">સંપૂર્ણ કોર્સ અને ઇન્ટરફેસ ગુજરાતી માં ઉપલબ્ધ છે.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">ಕನ್ನಡ (Kannada)</h3><p class="text-sm text-gray-600">ಪಠ್ಯ ಮತ್ತು ಇಂಟರ್ಫೇಸ್ ಕನ್ನಡದಲ್ಲಿ ಲಭ್ಯವಿದೆ.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">മലയാളം (Malayalam)</h3><p class="text-sm text-gray-600">പാഠങ്ങളും ഇന്റർഫേസും മലയാളത്തിൽ ലഭ്യമാണ്.</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">ଓଡ଼ିଆ (Odia)</h3><p class="text-sm text-gray-600">ପାଠ୍ୟାବଳୀ ଓ UI ଓଡ଼ିଆରେ ଉପଲବ୍ଧ ଅଛି।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">ਪੰਜਾਬੀ (Punjabi)</h3><p class="text-sm text-gray-600">ਕੋਰਸ ਅਤੇ ਇੰਟਰਫੇਸ ਪੰਜਾਬੀ ਵਿੱਚ ਉਪਲਬਧ ਹਨ।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">অসমীয়া (Assamese)</h3><p class="text-sm text-gray-600">UI ଆରୁ ପାଠସମୂହ ଅସମୀଯ଼ାତ ଉପଲବ୍ଧ।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">संथाली (Santali)</h3><p class="text-sm text-gray-600">ᱪᱤᱱᱟ ᱯᱟᱨᱥᱟ ᱟᱞᱮᱫ ᱥᱮᱱᱛᱟᱞᱤ ᱞᱟᱹᱨᱤᱡ ᱟᱨ UI ᱵᱚᱸᱫ ᱠᱟᱹᱞᱤᱫ ᱦᱚᱪᱚᱜᱼᱟ।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">मैथिली (Maithili)</h3><p class="text-sm text-gray-600">पूरा UI आ पाठ मैथिली में उपलब्ध अछि।</p></div>
+                <div class="bg-green-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-green-700">Dogri (डोगरी)</h3><p class="text-sm text-gray-600">यूआई ते कोर्स डोगरी भाषे में उपलब्द ऐ।</p></div>
+              </div>
+            </div>
+          </div>
+          <!-- Gamification -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-yellow-600 text-center mb-2">🏅 Gamification</h2>
+            <p class="text-gray-700 text-center text-lg mb-4">Earn badges, XP, and ranks as you progress. Unlock achievements and stay motivated to learn more.</p>
+            <button onclick="toggleGamify()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-5 py-2 rounded transition mb-2">Show / Hide Gamification</button>
+            <div id="gamifyList" class="hidden w-full mt-2">
+              <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">👶 Beginner Badge</h3><p class="text-sm text-gray-600">Complete your first lesson to unlock this badge.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🎯 100 XP</h3><p class="text-sm text-gray-600">Earned after solving 5 coding problems.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">⚔ Code Warrior</h3><p class="text-sm text-gray-600">Challenge 3 friends via WhatsApp to earn this title.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🏃‍♂ Streak Master</h3><p class="text-sm text-gray-600">Log in and code for 7 days in a row.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🌟 Full Stack Hero</h3><p class="text-sm text-gray-600">Complete all frontend and backend lessons.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">💡 Bug Buster</h3><p class="text-sm text-gray-600">Fix 3 failed submissions in the compiler.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🎖 Rank: Learner</h3><p class="text-sm text-gray-600">Earned at 0-300 XP range.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🎖 Rank: Coder</h3><p class="text-sm text-gray-600">Achieved at 300-700 XP.</p></div>
+                <div class="bg-yellow-50 p-4 rounded-md shadow-sm"><h3 class="font-semibold text-yellow-700">🎖 Rank: StackMaster</h3><p class="text-sm text-gray-600">Unlocked at 1000+ XP. Top of the leaderboard!</p></div>
+              </div>
+            </div>
+          </div>
+          <!-- Certificates -->
+          <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center">
+            <h2 class="text-3xl font-bold text-blue-700 text-center mb-2">📜 Certificates</h2>
+            <p class="text-gray-700 text-center text-lg mb-4">Get a verified certificate after completing each module. Showcase your skills to peers and future employers.</p>
+            <button onclick="toggleCertificates()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded transition mb-2">Show / Hide Sample Certificate</button>
+            <div id="certificateSection" class="hidden w-full mt-2 flex flex-col items-center space-y-4">
+              <img src="./assets/images/Screenshot 2025-07-05 120746.png" alt="StackSmash Certificate" class="rounded-lg border-2 border-blue-200 shadow-md w-full max-w-3xl"/>
+              <p class="text-sm text-gray-600 text-center">Note: Upon completion of each lesson module (HTML, Python, SQL, etc.), a certificate like this will be auto-generated with your name, module, date, and QR verification code.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        function toggleLessons() {
+          const list = document.getElementById('lessonList');
+          list.classList.toggle('hidden');
+        }
+        function toggleChallenges() {
+          const list = document.getElementById('challengeList');
+          list.classList.toggle('hidden');
+        }
+        function toggleCommands() {
+          const list = document.getElementById('voiceCommandList');
+          list.classList.toggle('hidden');
+        }
+        function toggleLanguages() {
+          const list = document.getElementById('languageList');
+          list.classList.toggle('hidden');
+        }
+        function toggleGamify() {
+          const list = document.getElementById('gamifyList');
+          list.classList.toggle('hidden');
+        }
+        function toggleCertificates() {
+          const section = document.getElementById('certificateSection');
+          section.classList.toggle('hidden');
+        }
+      </script>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fecfef 50%, #ffecd2 75%, #fcb69f 100%);">
+      <div class="absolute inset-0 bg-black opacity-5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800 drop-shadow-lg">Master the Full Stack</h2>
+                <p class="text-xl text-gray-700 drop-shadow-md">Learn both frontend and backend technologies</p>
+            </div>
+            
+            <!-- Technology Tabs -->
+            <div class="mb-8">
+                <div class="flex justify-center space-x-1 bg-white dark:bg-gray-800 rounded-lg p-1 shadow-sm">
+                    <button id="frontend-tab" class="px-6 py-3 rounded-md font-semibold bg-blue-600 text-white transition-colors">
+                        Frontend Technologies
+                    </button>
+                    <button id="backend-tab" class="px-6 py-3 rounded-md font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        Backend Technologies
+                    </button>
+                </div>
+            </div>
+
+            <!-- Frontend Technologies -->
+            <div id="frontend-content" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="frontend/html.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-html5 text-4xl text-orange-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">HTML</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Structure & Semantics</p>
+                </a>
+                <a href="frontend/css.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-css3-alt text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">CSS</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Styling & Layout</p>
+                </a>
+                <a href="frontend/javascript.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-js-square text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">JavaScript</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Dynamic Behavior</p>
+                </a>
+                <a href="frontend/react.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-react text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="font-semibold mb-2">React</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Component Library</p>
+                </a>
+                <a href="frontend/angular.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-angular text-4xl text-red-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Angular</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Full Framework</p>
+                </a>
+                <a href="frontend/vue.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-vuejs text-4xl text-green-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Vue.js</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Progressive Framework</p>
+                </a>
+                <a href="frontend/jquery.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-code text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">jQuery</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">DOM Manipulation</p>
+                </a>
+                <a href="frontend/sass.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-sass text-4xl text-pink-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">SASS</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">CSS Preprocessor</p>
+                </a>
+            </div>
+
+            <!-- Backend Technologies (Hidden by default) -->
+            <div id="backend-content" class="grid grid-cols-2 md:grid-cols-4 gap-6 hidden">
+                <a href="backend/python.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-python text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Python</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Flask/Django</p>
+                </a>
+                <a href="backend/java.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-java text-4xl text-red-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Java</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Spring Boot</p>
+                </a>
+                <a href="backend/node.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-node-js text-4xl text-green-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Node.js</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Express.js</p>
+                </a>
+                <a href="backend/php.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fab fa-php text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">PHP</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Laravel</p>
+                </a>
+                <a href="backend/ruby.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-gem text-4xl text-red-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Ruby</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Rails</p>
+                </a>
+                <a href="backend/go.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-code text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Go</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Gin/Echo</p>
+                </a>
+                <a href="backend/rust.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-cog text-4xl text-orange-600 mb-4"></i>
+                    <h3 class="font-semibold mb-2">Rust</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Actix</p>
+                </a>
+                <a href="backend/sql.html" class="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-database text-4xl text-blue-700 mb-4"></i>
+                    <h3 class="font-semibold mb-2">SQL</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Database</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 25%, #fef3c7 50%, #fecaca 75%, #dbeafe 100%);">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+            <div class="absolute top-32 right-20 w-16 h-16 bg-purple-200 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-green-200 rounded-full animate-bounce" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-32 right-1/3 w-12 h-12 bg-pink-200 rounded-full animate-bounce" style="animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-800 mb-6 drop-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    About <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">StackSmash</span>
+                </h2>
+                <p class="text-2xl text-gray-700 drop-shadow-sm max-w-4xl mx-auto leading-relaxed">
+                    Empowering B.Tech students to master Full Stack Development through interactive learning, real-time coding, and peer collaboration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Mission -->
+                <div class="space-y-8">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300 border-l-4 border-blue-500">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                                <i class="fas fa-bullseye text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Our Mission</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    To bridge the gap between academic learning and industry requirements by providing hands-on, project-based learning experiences that prepare students for real-world development challenges.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300 border-l-4 border-green-500">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                                <i class="fas fa-eye text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Our Vision</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    To become the leading platform for B.Tech students to learn Full Stack Development, fostering a community of skilled developers ready to innovate and build the future.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl transform hover:scale-105 transition-all duration-300 border-l-4 border-purple-500">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Our Values</h3>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Innovation, collaboration, accessibility, and excellence. We believe in making quality education available to every student, regardless of their background.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Platform Statistics</h3>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="text-2xl font-bold text-white">10K+</div>
+                            </div>
+                            <div class="text-sm font-semibold text-gray-700">Active Students</div>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="text-2xl font-bold text-white">50+</div>
+                            </div>
+                            <div class="text-sm font-semibold text-gray-700">Programming Languages</div>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="text-2xl font-bold text-white">1000+</div>
+                            </div>
+                            <div class="text-sm font-semibold text-gray-700">Coding Challenges</div>
+                        </div>
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="text-2xl font-bold text-white">95%</div>
+                            </div>
+                            <div class="text-sm font-semibold text-gray-700">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-800 mb-6 drop-shadow-lg" style="text-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    Meet Our <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Team</span>
+                </h3>
+                <p class="text-xl text-gray-700 drop-shadow-sm">Passionate educators and developers dedicated to your success</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Academic Experts -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center transform hover:scale-105 transition-all duration-300 border border-white/20 group">
+                    <div class="w-24 h-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
+                        <i class="fas fa-user-graduate text-white text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Academic Experts</h4>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Experienced professors and industry professionals who understand the B.Tech curriculum and industry requirements.
+                    </p>
+                    
+                    <!-- Team Member Details -->
+                    <div class="space-y-4 text-left">
+                        <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 cursor-pointer hover:bg-blue-100 transition-colors duration-200" onclick="toggleTeamDetails('academic-1')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Dr. Sarah Johnson</h5>
+                                        <p class="text-xs text-blue-600">Head of Computer Science</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-blue-500 transition-transform duration-200" id="academic-1-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="academic-1-details">
+                                <p class="mb-2">15+ years teaching experience, specializes in algorithms and data structures</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>PhD in Computer Science from MIT</li>
+                                    <li>Published 50+ research papers</li>
+                                    <li>Led curriculum development for 10+ universities</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition-colors duration-200" onclick="toggleTeamDetails('academic-2')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-industry text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Prof. Michael Chen</h5>
+                                        <p class="text-xs text-purple-600">Industry Liaison</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-purple-500 transition-transform duration-200" id="academic-2-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="academic-2-details">
+                                <p class="mb-2">Former Google engineer, bridges academia-industry gap</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>10 years at Google as Senior Software Engineer</li>
+                                    <li>Mentored 200+ students in industry projects</li>
+                                    <li>Established partnerships with 15+ tech companies</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-pink-50 rounded-lg p-4 border-l-4 border-pink-500 cursor-pointer hover:bg-pink-100 transition-colors duration-200" onclick="toggleTeamDetails('academic-3')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-book text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Dr. Emily Rodriguez</h5>
+                                        <p class="text-xs text-pink-600">Curriculum Designer</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-pink-500 transition-transform duration-200" id="academic-3-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="academic-3-details">
+                                <p class="mb-2">Expert in modern pedagogy, designs interactive learning modules</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>PhD in Educational Technology from Stanford</li>
+                                    <li>Designed 100+ interactive learning modules</li>
+                                    <li>Pioneered gamification in coding education</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Stack Developers -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center transform hover:scale-105 transition-all duration-300 border border-white/20 group">
+                    <div class="w-24 h-24 bg-gradient-to-r from-green-500 via-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
+                        <i class="fas fa-code text-white text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Full Stack Developers</h4>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Senior developers with years of experience in both frontend and backend technologies, creating real-world projects.
+                    </p>
+                    
+                    <!-- Team Member Details -->
+                    <div class="space-y-4 text-left">
+                        <div class="bg-green-50 rounded-lg p-4 border-l-4 border-green-500 cursor-pointer hover:bg-green-100 transition-colors duration-200" onclick="toggleTeamDetails('dev-1')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                                        <i class="fab fa-react text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Alex Thompson</h5>
+                                        <p class="text-xs text-green-600">Frontend Lead</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-green-500 transition-transform duration-200" id="dev-1-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="dev-1-details">
+                                <p class="mb-2">React/Next.js expert, 8+ years building scalable UIs</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>Built 50+ production React applications</li>
+                                    <li>Expert in TypeScript and modern CSS</li>
+                                    <li>Open source contributor to React ecosystem</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 cursor-pointer hover:bg-blue-100 transition-colors duration-200" onclick="toggleTeamDetails('dev-2')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <i class="fab fa-node-js text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">David Park</h5>
+                                        <p class="text-xs text-blue-600">Backend Architect</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-blue-500 transition-transform duration-200" id="dev-2-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="dev-2-details">
+                                <p class="mb-2">Node.js/Python specialist, microservices expert</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>Architected 20+ microservices systems</li>
+                                    <li>Expert in Docker, Kubernetes, and AWS</li>
+                                    <li>Led teams of 15+ developers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-cyan-50 rounded-lg p-4 border-l-4 border-cyan-500 cursor-pointer hover:bg-cyan-100 transition-colors duration-200" onclick="toggleTeamDetails('dev-3')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-database text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Lisa Wang</h5>
+                                        <p class="text-xs text-cyan-600">DevOps Engineer</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-cyan-500 transition-transform duration-200" id="dev-3-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="dev-3-details">
+                                <p class="mb-2">AWS/Docker expert, ensures smooth deployment</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>AWS Solutions Architect certified</li>
+                                    <li>Implemented CI/CD for 30+ projects</li>
+                                    <li>Reduced deployment time by 80%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Managers -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center transform hover:scale-105 transition-all duration-300 border border-white/20 group">
+                    <div class="w-24 h-24 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
+                        <i class="fas fa-users text-white text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Community Managers</h4>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Dedicated team members who foster collaboration, organize challenges, and ensure every student feels supported.
+                    </p>
+                    
+                    <!-- Team Member Details -->
+                    <div class="space-y-4 text-left">
+                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition-colors duration-200" onclick="toggleTeamDetails('community-1')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-trophy text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Maria Garcia</h5>
+                                        <p class="text-xs text-purple-600">Challenge Coordinator</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-purple-500 transition-transform duration-200" id="community-1-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="community-1-details">
+                                <p class="mb-2">Organizes coding competitions and hackathons</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>Organized 100+ coding competitions</li>
+                                    <li>Managed 50+ hackathons with 1000+ participants</li>
+                                    <li>Created innovative challenge formats</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-pink-50 rounded-lg p-4 border-l-4 border-pink-500 cursor-pointer hover:bg-pink-100 transition-colors duration-200" onclick="toggleTeamDetails('community-2')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-comments text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">James Wilson</h5>
+                                        <p class="text-xs text-pink-600">Student Support</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-pink-500 transition-transform duration-200" id="community-2-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="community-2-details">
+                                <p class="mb-2">Provides 24/7 help and mentorship to students</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>Supported 5000+ students with technical issues</li>
+                                    <li>Created comprehensive FAQ and help system</li>
+                                    <li>Mentored 200+ students to successful careers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-red-50 rounded-lg p-4 border-l-4 border-red-500 cursor-pointer hover:bg-red-100 transition-colors duration-200" onclick="toggleTeamDetails('community-3')">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-calendar-alt text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-900">Sophie Kim</h5>
+                                        <p class="text-xs text-red-600">Events Manager</p>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down text-red-500 transition-transform duration-200" id="community-3-icon"></i>
+                            </div>
+                            <div class="mt-3 text-sm text-gray-600 hidden" id="community-3-details">
+                                <p class="mb-2">Coordinates workshops, meetups, and networking events</p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li>Coordinated 200+ workshops and meetups</li>
+                                    <li>Built network of 100+ industry professionals</li>
+                                    <li>Facilitated 500+ student-industry connections</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="mt-20 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-10 border border-white/20">
+                <h3 class="text-4xl font-bold text-gray-900 mb-12 text-center bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">Why Choose StackSmash?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-3 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">B.Tech Focused</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed">Curriculum designed specifically for B.Tech students</p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-laptop-code text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-3 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Hands-on Learning</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed">Learn by doing with real-time code execution</p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-trophy text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-3 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Peer Challenges</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed">Compete and collaborate with fellow students</p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-certificate text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-3 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Industry Ready</h4>
+                        <p class="text-sm text-gray-700 leading-relaxed">Skills that directly translate to job opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4 drop-shadow-lg">Ready to Start Your Journey?</h2>
+            <p class="text-xl text-blue-100 mb-8 drop-shadow-md">Join thousands of students mastering Full Stack Development</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="auth/signup.html" class="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Get Started Free
+                </a>
+                <a href="compiler/editor.html" class="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Try Code Editor
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold">StackSmash</span>
+                    </div>
+                    <p class="text-gray-400">Learn the Stack, Smash the Track. Master Full Stack Development with interactive lessons and peer challenges.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Frontend</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="frontend/html.html" class="hover:text-white">HTML</a></li>
+                        <li><a href="frontend/css.html" class="hover:text-white">CSS</a></li>
+                        <li><a href="frontend/javascript.html" class="hover:text-white">JavaScript</a></li>
+                        <li><a href="frontend/react.html" class="hover:text-white">React</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Backend</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="backend/python.html" class="hover:text-white">Python</a></li>
+                        <li><a href="backend/java.html" class="hover:text-white">Java</a></li>
+                        <li><a href="backend/node.html" class="hover:text-white">Node.js</a></li>
+                        <li><a href="backend/php.html" class="hover:text-white">PHP</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="compiler/editor.html" class="hover:text-white">Code Editor</a></li>
+                        <li><a href="challenges/sample-challenge.html" class="hover:text-white">Challenges</a></li>
+                        <li><a href="auth/login.html" class="hover:text-white">Login</a></li>
+                        <li><a href="auth/signup.html" class="hover:text-white">Sign Up</a></li>
+                        <li><a href="auth/profile.html" class="hover:text-white">My Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 StackSmash. All rights reserved. Made with ❤️ for B.Tech students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="components/darkmode-toggle.js"></script>
+    <script src="components/voice-assist.js"></script>
+    <script>
+        // Check login status and show/hide profile link
+        function checkLoginStatus() {
+            const userData = JSON.parse(localStorage.getItem('stacksmash-user') || '{}');
+            const profileLink = document.getElementById('profile-link');
+            const studentDashboard = document.getElementById('student-dashboard');
+            
+            if (userData.isLoggedIn) {
+                profileLink.classList.remove('hidden');
+                studentDashboard.classList.remove('hidden');
+                
+                // Populate student dashboard with user data
+                document.getElementById('student-name').textContent = `${userData.firstName || 'Student'} ${userData.lastName || ''}`;
+                document.getElementById('student-level').textContent = userData.level || 1;
+                document.getElementById('student-xp').textContent = userData.xp || 0;
+                document.getElementById('lessons-completed').textContent = userData.lessonsCompleted || 0;
+                document.getElementById('challenges-won').textContent = userData.challengesWon || 0;
+                document.getElementById('last-activity').textContent = userData.lastActivity || 'No activity yet';
+                
+                // Hide login/signup buttons when logged in
+                const loginBtn = document.querySelector('a[href="auth/login.html"]');
+                const signupBtn = document.querySelector('a[href="auth/signup.html"]');
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (signupBtn) signupBtn.style.display = 'none';
+            } else {
+                profileLink.classList.add('hidden');
+                studentDashboard.classList.add('hidden');
+            }
+        }
+
+        // Technology tabs functionality
+        document.getElementById('frontend-tab').addEventListener('click', function() {
+            document.getElementById('frontend-content').classList.remove('hidden');
+            document.getElementById('backend-content').classList.add('hidden');
+            document.getElementById('frontend-tab').classList.add('bg-blue-600', 'text-white');
+            document.getElementById('frontend-tab').classList.remove('text-gray-600', 'dark:text-gray-400');
+            document.getElementById('backend-tab').classList.remove('bg-blue-600', 'text-white');
+            document.getElementById('backend-tab').classList.add('text-gray-600', 'dark:text-gray-400');
+        });
+
+        document.getElementById('backend-tab').addEventListener('click', function() {
+            document.getElementById('backend-content').classList.remove('hidden');
+            document.getElementById('frontend-content').classList.add('hidden');
+            document.getElementById('backend-tab').classList.add('bg-blue-600', 'text-white');
+            document.getElementById('backend-tab').classList.remove('text-gray-600', 'dark:text-gray-400');
+            document.getElementById('frontend-tab').classList.remove('bg-blue-600', 'text-white');
+            document.getElementById('frontend-tab').classList.add('text-gray-600', 'dark:text-gray-400');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize login status check
+        checkLoginStatus();
+
+        // Team details toggle functionality
+        function toggleTeamDetails(id) {
+            const details = document.getElementById(id + '-details');
+            const icon = document.getElementById(id + '-icon');
+            
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                details.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+
+    <!-- Add this modal just before the closing </section> of the About section -->
+    <div id="meetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+      <div class="bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full relative animate-fade-in">
+        <button onclick="closeMeetModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+        <div class="flex items-center space-x-4 mb-4">
+          <div id="meetModalAvatar" class="w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold"></div>
+          <div>
+            <div id="meetModalName" class="font-bold text-lg text-gray-900"></div>
+            <div id="meetModalRole" class="text-sm text-blue-600 font-medium"></div>
+          </div>
+        </div>
+        <div id="meetModalIntro" class="text-gray-700 mb-4"></div>
+        <div id="meetModalContact" class="text-sm text-gray-500 mb-4"></div>
+        <form id="meetForm" onsubmit="submitMeetForm(event)">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+          <input id="studentNameInput" type="text" required class="w-full mb-3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Your Query</label>
+          <textarea id="studentQueryInput" required class="w-full mb-3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Type your message or query..."></textarea>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Send Query</button>
+        </form>
+        <button onclick="closeMeetModal()" class="mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-300 transition">Close</button>
+      </div>
+    </div>
+
+    <!-- Add Meet buttons to each team member card (example for Academic Experts) -->
+    <!-- For each card, add: -->
+    <!-- <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition" onclick="openMeetModal('Sarah Johnson', 'Head of Computer Science', 'Dr. Sarah Johnson is passionate about teaching algorithms and data structures. Reach out for academic guidance!', 'sarah.johnson@university.edu', 'blue')">Meet</button> -->
+
+    <!-- Example for Dr. Sarah Johnson -->
+    <div class="flex justify-end mt-2">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition" onclick="openMeetModal('Dr. Sarah Johnson', 'Head of Computer Science', 'Dr. Sarah Johnson is passionate about teaching algorithms and data structures. Reach out for academic guidance!', 'sarah.johnson@university.edu', 'blue')">Meet</button>
+    </div>
+
+    <!-- Repeat similar Meet button for each team member, changing the arguments accordingly. -->
+
+    <!-- Add this script at the end of the <script> section -->
+    <script>
+    function openMeetModal(name, role, intro, contact, color) {
+      document.getElementById('meetModal').classList.remove('hidden');
+      document.getElementById('meetModalName').textContent = name;
+      document.getElementById('meetModalRole').textContent = role;
+      document.getElementById('meetModalIntro').textContent = intro;
+      document.getElementById('meetModalContact').textContent = contact ? 'Contact: ' + contact : '';
+      // Set avatar color and initials
+      const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase();
+      const colorMap = {blue:'#3b82f6',green:'#10b981',pink:'#ec4899',purple:'#8b5cf6',cyan:'#06b6d4',red:'#ef4444'};
+      document.getElementById('meetModalAvatar').style.background = colorMap[color] || '#e5e7eb';
+      document.getElementById('meetModalAvatar').textContent = initials;
+      // Clear form
+      document.getElementById('studentNameInput').value = '';
+      document.getElementById('studentQueryInput').value = '';
+    }
+    function closeMeetModal() {
+      document.getElementById('meetModal').classList.add('hidden');
+    }
+    function submitMeetForm(event) {
+      event.preventDefault();
+      const name = document.getElementById('studentNameInput').value;
+      const query = document.getElementById('studentQueryInput').value;
+      const prof = document.getElementById('meetModalName').textContent;
+      alert(`Your query has been sent to ${prof}!\nName: ${name}\nQuery: ${query}`);
+      closeMeetModal();
+    }
+    </script>
+</body>
+</html> 
