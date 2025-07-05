@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StackSmash - Try Code Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --text: #1f2937;
+      --panel: #fff;
+      --btn: #6366f1;
+      --btn-hover: #4338ca;
+      --header-gradient: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+      --accent1: #f59e42;
+      --accent2: #06b6d4;
+      --accent3: #a259f7;
+    }
+    [data-theme="dark"] {
+      --bg: #181a20;
+      --text: #f9fafb;
+      --panel: #23272f;
+      --btn: #06b6d4;
+      --btn-hover: #0ea5e9;
+      --header-gradient: linear-gradient(90deg, #06b6d4 0%, #6366f1 100%);
+      --accent1: #f59e42;
+      --accent2: #6366f1;
+      --accent3: #a259f7;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+      background: var(--header-gradient);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      flex-wrap: wrap;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-left: 14px;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(6,182,212,0.12);
+    }
+    .header-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    select,
+    button {
+      padding: 9px 14px;
+      border-radius: 7px;
+      border: none;
+      font-size: 15px;
+      background: #f3f4f6;
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+    }
+    select {
+      border: 1px solid #d1d5db;
+      background: var(--panel);
+      color: var(--text);
+    }
+    button.run {
+      background: var(--btn);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+    }
+    button.run:hover {
+      background: var(--btn-hover);
+    }
+    button.share {
+      background: var(--accent2);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(6,182,212,0.10);
+    }
+    button.share:hover {
+      background: #0891b2;
+    }
+    .quick-card-btn {
+      background: var(--accent1);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 2px 8px rgba(245,158,66,0.10);
+    }
+    .quick-card-btn:hover {
+      background: #ea580c;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 32px 20px 20px 20px;
+      gap: 24px;
+      background: linear-gradient(120deg, #f6f8fa 60%, #e0e7ff 100%);
+      border-radius: 18px;
+      margin: 24px auto 0 auto;
+      max-width: 1400px;
+      box-shadow: 0 4px 24px rgba(99,102,241,0.06);
+    }
+    .lesson,
+    .editor {
+      flex: 1 1 400px;
+      background-color: var(--panel);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(6,182,212,0.06);
+    }
+    pre {
+      background-color: var(--bg);
+      padding: 12px;
+      border-radius: 7px;
+      overflow-x: auto;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    textarea {
+      width: 100%;
+      height: 320px;
+      border-radius: 7px;
+      padding: 12px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      resize: vertical;
+      background-color: var(--bg);
+      color: var(--text);
+      border: 1px solid #d1d5db;
+      font-size: 1.08rem;
+      box-shadow: 0 1px 4px rgba(99,102,241,0.04);
+    }
+    .editor-buttons {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .output-box {
+      margin-top: 20px;
+      background: #e0f2fe;
+      color: #0f172a;
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      min-height: 40px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #bae6fd;
+      font-size: 1.08rem;
+      box-shadow: 0 2px 8px rgba(6,182,212,0.06);
+    }
+    /* Quick Actions Styles */
+    .quick-actions-section {
+      max-width: 1200px;
+      margin: 30px auto 0 auto;
+      padding: 0 20px;
+    }
+    .quick-actions-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+    .quick-actions {
+      display: flex;
+      gap: 32px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .quick-card {
+      background: var(--panel);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 1px 4px rgba(99,102,241,0.04);
+      padding: 32px 36px;
+      min-width: 260px;
+      flex: 1 1 260px;
+      max-width: 350px;
+      text-align: center;
+      transition: box-shadow 0.2s, border 0.2s;
+    }
+    .quick-card:hover {
+      box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+      border-color: var(--btn);
+    }
+    .quick-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--btn);
+    }
+    .quick-card-desc {
+      color: #6b7280;
+      font-size: 1rem;
+    }
+    /* Professional Leaderboard Styles */
+    .leaderboard-section {
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      padding: 0 20px 30px 20px;
+    }
+    .leaderboard-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 24px;
+      color: var(--text);
+      text-align: center;
+      background: linear-gradient(135deg, var(--btn), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .lb-list {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .lb-card {
+      background: var(--panel);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(99,102,241,0.06);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .lb-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99,102,241,0.12);
+      border-color: var(--btn);
+    }
+    
+    .lb-card:nth-child(1) {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 2px 8px rgba(99,102,241,0.06); }
+      50% { box-shadow: 0 4px 16px rgba(99,102,241,0.15); }
+    }
+    .lb-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--btn), var(--accent2));
+    }
+    .lb-rank {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--btn);
+      min-width: 40px;
+      text-align: center;
+    }
+    .lb-badge {
+      font-size: 1.5rem;
+      margin-right: 4px;
+    }
+    .lb-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--btn), var(--accent2));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.2);
+    }
+    .lb-name {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .lb-lang {
+      background: var(--accent1);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .lb-score-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .lb-score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    .lb-score {
+      font-weight: bold;
+      color: var(--btn);
+      font-size: 1.1rem;
+      min-width: 40px;
+      text-align: center;
+    }
+    .lb-date {
+      color: #6b7280;
+      font-size: 0.9rem;
+      min-width: 80px;
+      text-align: center;
+    }
+    /* Responsive tweaks */
+    @media (max-width: 900px) {
+      .quick-actions {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .quick-card {
+        max-width: 100%;
+      }
+      .leaderboard-section {
+        padding: 0 4px 30px 4px;
+      }
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 0 0 18px 18px;
+      }
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      main {
+        flex-direction: column;
+        padding: 16px 4px 8px 4px;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <div class="header-left">
+      <img src="https://via.placeholder.com/36x36/6366f1/fff?text=S" alt="Logo" style="border-radius:8px;box-shadow:0 2px 8px #06b6d433;" />
+      <div class="logo">StackSmash Code Editor</div>
+    </div>
+    <div class="header-right">
+      <select id="problem-select"></select>
+      <select id="language" onchange="loadLesson()">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="java">Java</option>
+        <option value="sql">SQL</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="php">PHP</option>
+        <option value="ruby">Ruby</option>
+        <option value="go">Go</option>
+        <option value="rust">Rust</option>
+      </select>
+      <select id="theme" onchange="toggleTheme()">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+      </select>
+      <button class="run" onclick="runCode()">Run Code</button>
+      <button class="share" onclick="shareChallenge()">Share Challenge</button>
+    </div>
+  </header>
+  <!-- Quick Actions Section -->
+  <section class="quick-actions-section">
+    <div class="quick-actions-title">Quick Actions</div>
+    <div class="quick-actions">
+      <div class="quick-card">
+        <div class="quick-card-title">Download Code</div>
+        <div class="quick-card-desc">Save your work locally</div>
+        <button class="quick-card-btn" onclick="downloadCode()">Download</button>
+      </div>
+      <div class="quick-card">
+        <div class="quick-card-title">Share Solution</div>
+        <div class="quick-card-desc">Share via WhatsApp</div>
+        <button class="quick-card-btn" onclick="shareSolution()">Share</button>
+      </div>
+      <div class="quick-card">
+        <div class="quick-card-title">View Leaderboard</div>
+        <div class="quick-card-desc">See top solutions</div>
+        <button class="quick-card-btn" onclick="scrollToLeaderboard()">Leaderboard</button>
+      </div>
+    </div>
+  </section>
+  <main>
+    <div class="lesson" id="problem-box" style="flex: 1 1 400px; background: #f8fafc; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+      <!-- Problem statement will be rendered here -->
+    </div>
+    <div class="editor">
+      <h2>Code Editor</h2>
+      <textarea id="code" placeholder="Write your code here..."></textarea>
+      <div class="editor-buttons">
+        <button onclick="document.getElementById('code').value=''">Clear</button>
+        <button onclick="alert('Code Saved!')">Save</button>
+      </div>
+      <div class="output-box" id="outputBox">Output will appear here...</div>
+    </div>
+  </main>
+  <!-- Leaderboard Section -->
+  <section class="leaderboard-section" id="leaderboard-section">
+    <div class="leaderboard-title">Leaderboard <span id="lb-updated" style="font-size:0.9rem;color:#888;font-weight:400;margin-left:10px;"></span></div>
+    <div id="leaderboard-list" class="lb-list"></div>
+  </section>
+  <script src="./problems.js"></script>
+  <script>
+    // --- Problem Navigation and Rendering ---
+    let currentProblemId = null;
+    let currentLanguage = 'python';
+    function renderProblemSelector() {
+      const select = document.getElementById('problem-select');
+      select.innerHTML = '';
+      const filtered = PROBLEMS.filter(p => p.language.includes(currentLanguage));
+      filtered.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `#${p.id}: ${p.title}`;
+        select.appendChild(opt);
+      });
+      select.onchange = function() {
+        loadProblem(parseInt(this.value));
+      };
+      if (filtered.length > 0) {
+        loadProblem(filtered[0].id);
+      }
+    }
+    function renderProblemBox(problem) {
+      const box = document.getElementById('problem-box');
+      box.innerHTML = `
+        <div style="font-size:1.3rem;font-weight:bold;color:#16a34a;margin-bottom:8px;">
+          🔍 Problem ${problem.id}: ${problem.title}
+        </div>
+        <div style="margin-bottom:10px;"><b>📄 Description:</b><br>${problem.description}</div>
+        <div style="margin-bottom:10px;"><b>📥 Input:</b><br>${problem.input}</div>
+        <div style="margin-bottom:10px;"><b>📤 Output:</b><br>${problem.output}</div>
+        <div style="margin-bottom:10px;"><b>📌 Example:</b><br><pre style='background:#f3f4f6;padding:8px;border-radius:6px;'>Input:\n${problem.example.input}\n\nOutput:\n${problem.example.output}</pre></div>
+        <div style="margin-bottom:10px;"><b>🧪 Test Case:</b><br><pre style='background:#f3f4f6;padding:8px;border-radius:6px;'>${problem.testCase}</pre></div>
+      `;
+    }
+    function loadProblem(id) {
+      currentProblemId = id;
+      const problem = PROBLEMS.find(p => p.id === id);
+      renderProblemBox(problem);
+      // Load starter code from localStorage or default
+      const key = `ss_code_${id}_${currentLanguage}`;
+      const saved = localStorage.getItem(key);
+      document.getElementById('code').value = saved || '';
+    }
+    document.getElementById('language').onchange = function() {
+      currentLanguage = this.value;
+      renderProblemSelector();
+    };
+    document.getElementById('code').oninput = function() {
+      if (currentProblemId) {
+        const key = `ss_code_${currentProblemId}_${currentLanguage}`;
+        localStorage.setItem(key, this.value);
+      }
+    };
+    // On load
+    currentLanguage = document.getElementById('language').value;
+    renderProblemSelector();
+    // --- End Problem Navigation ---
+
+    // --- Run Code (Piston API) ---
+    async function runCode() {
+      const lang = document.getElementById("language").value;
+      const code = document.getElementById("code").value;
+      const outputBox = document.getElementById("outputBox");
+      outputBox.textContent = "Running...";
+      // Map language to Piston API language and file extension
+      const langMap = {
+        javascript: { piston: "javascript", ext: "js" },
+        python: { piston: "python", ext: "py" },
+        java: { piston: "java", ext: "java" },
+        c: { piston: "c", ext: "c" },
+        cpp: { piston: "cpp", ext: "cpp" },
+        go: { piston: "go", ext: "go" },
+        rust: { piston: "rust", ext: "rs" },
+        php: { piston: "php", ext: "php" },
+        ruby: { piston: "ruby", ext: "rb" }
+      };
+      const langObj = langMap[lang] || { piston: lang, ext: "txt" };
+      const pistonLang = langObj.piston;
+      const fileExt = langObj.ext;
+      // Only allow supported languages
+      const supported = ["javascript","python","java","c","cpp","go","rust","php","ruby"];
+      if (!supported.includes(pistonLang)) {
+        outputBox.textContent = "Run not supported for this language.";
+        return;
+      }
+      try {
+        // Fetch available runtimes to get the latest version
+        const runtimesRes = await fetch("https://piston.rs/api/v2/runtimes");
+        const runtimes = await runtimesRes.json();
+        const runtime = runtimes.find(r => r.language === pistonLang);
+        const version = runtime ? runtime.version : "latest";
+        const res = await fetch("https://piston.rs/api/v2/execute", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            language: pistonLang,
+            version: version,
+            files: [{ name: `main.${fileExt}`, content: code }]
+          })
+        });
+        const data = await res.json();
+        if (data.run && data.run.output) {
+          outputBox.textContent = data.run.output;
+        } else if (data.output) {
+          outputBox.textContent = data.output;
+        } else if (data.message) {
+          outputBox.textContent = data.message;
+        } else {
+          outputBox.textContent = "No output.";
+        }
+      } catch (e) {
+        outputBox.textContent = "Error: " + e.message;
+      }
+    }
+    function shareChallenge() {
+      const code = document.getElementById("code").value;
+      const lang = document.getElementById("language").value;
+      const problemId = currentProblemId;
+      // Build a short link to the same challenge with code and language as params
+      const baseUrl = window.location.origin + window.location.pathname;
+      const link = `${baseUrl}?pid=${problemId}&lang=${encodeURIComponent(lang)}&code=${encodeURIComponent(code)}`;
+      const message = `🚩 StackSmash Challenge! Try to beat my solution: ${link}`;
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, '_blank');
+    }
+    function downloadCode() {
+      const code = document.getElementById('code').value;
+      const lang = document.getElementById('language').value;
+      let ext = 'txt';
+      switch(lang) {
+        case 'javascript': ext = 'js'; break;
+        case 'python': ext = 'py'; break;
+        case 'sql': ext = 'sql'; break;
+        case 'html': ext = 'html'; break;
+        case 'css': ext = 'css'; break;
+        case 'java': ext = 'java'; break;
+        case 'php': ext = 'php'; break;
+        case 'ruby': ext = 'rb'; break;
+        case 'go': ext = 'go'; break;
+        case 'rust': ext = 'rs'; break;
+        case 'c': ext = 'c'; break;
+        case 'cpp': ext = 'cpp'; break;
+      }
+      const blob = new Blob([code], {type: 'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `stacksmash_code.${ext}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    function shareSolution() {
+      const code = document.getElementById('code').value;
+      const url = `https://wa.me/?text=${encodeURIComponent(code)}`;
+      window.open(url, '_blank');
+    }
+    function scrollToLeaderboard() {
+      document.getElementById('leaderboard-section').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // --- Theme Toggle Function ---
+    function toggleTheme() {
+      const theme = document.getElementById('theme').value;
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem('ss_theme', theme);
+    }
+    
+    // Load saved theme on page load
+    const savedTheme = localStorage.getItem('ss_theme') || 'light';
+    document.body.setAttribute('data-theme', savedTheme);
+    document.getElementById('theme').value = savedTheme;
+    
+    // --- Professional Real-Time Leaderboard ---
+    const LB_USERS = [
+      { name: "Aryan", lang: "Python", score: 98, date: "2024-06-01" },
+      { name: "Divya", lang: "JavaScript", score: 95, date: "2024-06-02" },
+      { name: "Priya", lang: "Java", score: 93, date: "2024-06-03" },
+      { name: "Rahul", lang: "C++", score: 90, date: "2024-06-04" },
+      { name: "Simran", lang: "HTML", score: 88, date: "2024-06-05" },
+      { name: "Amit", lang: "C", score: 85, date: "2024-06-06" },
+      { name: "Sneha", lang: "Python", score: 84, date: "2024-06-07" },
+      { name: "Rohan", lang: "JavaScript", score: 82, date: "2024-06-08" },
+      { name: "Meera", lang: "Java", score: 80, date: "2024-06-09" },
+      { name: "Vikas", lang: "C++", score: 78, date: "2024-06-10" }
+    ];
+    function getBadge(rank) {
+      if(rank===1) return '<span class="lb-badge">🥇</span>';
+      if(rank===2) return '<span class="lb-badge">🥈</span>';
+      if(rank===3) return '<span class="lb-badge">🥉</span>';
+      return '';
+    }
+    function getAvatar(name) {
+      const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase();
+      return `<span class="lb-avatar">${initials}</span>`;
+    }
+    function renderLeaderboard(users) {
+      const maxScore = Math.max(...users.map(u=>u.score));
+      document.getElementById('leaderboard-list').innerHTML = users.map((u,i)=>`
+        <div class="lb-card" style="${i<3?'border:2px solid var(--btn);box-shadow:0 4px 16px rgba(99,102,241,0.15);':''}">
+          <div class="lb-rank">${getBadge(i+1)}${i+1}</div>
+          ${getAvatar(u.name)}
+          <div style="display:flex;flex-direction:column;gap:4px;flex:1;">
+            <span class="lb-name">${u.name}</span>
+            <span class="lb-lang">${u.lang}</span>
+          </div>
+          <div class="lb-score-bar">
+            <div class="lb-score-fill" style="width:${(u.score/maxScore)*100}%"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span class="lb-score">${u.score}</span>
+            <span class="lb-date">${u.date}</span>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('lb-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+    }
+    function simulateLeaderboard() {
+      // Randomize scores for demo real-time effect
+      LB_USERS.forEach(u=>{ u.score = Math.max(70, Math.min(100, u.score + Math.floor(Math.random()*5-2))); });
+      LB_USERS.sort((a,b)=>b.score-a.score);
+      renderLeaderboard(LB_USERS);
+    }
+    renderLeaderboard(LB_USERS);
+    setInterval(simulateLeaderboard, 10000); // Update every 10s
+  </script>
+</body>
+</html> 
