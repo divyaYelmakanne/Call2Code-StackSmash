@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StackSmash - Rust Actix Web Framework</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f3f4f6;
+      text-align: center;
+    }
+    .header {
+      width: 100%;
+      background: #1e3a8a;
+      color: white;
+      padding: 15px;
+      font-size: 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .back-button {
+      position: absolute;
+      left: 20px;
+      background: #f59e0b;
+      color: white;
+      padding: 10px;
+      width: 80px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .course-box {
+      background-color: #60a5fa;
+      color: white;
+      padding: 20px;
+      margin: 80px auto 20px auto;
+      border-radius: 10px;
+      cursor: pointer;
+      max-width: 400px;
+    }
+    .course-content {
+      display: none;
+      text-align: left;
+      margin: 30px auto;
+      max-width: 800px;
+      padding-top: 70px;
+    }
+    .module {
+      background-color: #2563eb;
+      color: white;
+      padding: 14px;
+      margin: 8px 0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .module-content {
+      display: none;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: white;
+    }
+    .code-block {
+      background-color: #1f2937;
+      color: #f3f4f6;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      overflow-x: auto;
+    }
+    .finish-course-button {
+      background-color: #10b981;
+      color: white;
+      padding: 15px 32px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      width: 180px;
+      margin: 30px auto 0 auto;
+      display: block;
+    }
+    .certificate {
+      display: none;
+      width: 60%;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+    }
+    @media (max-width: 600px) {
+      .course-content, .certificate {
+        width: 98% !important;
+        padding: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html">
+      <button class="back-button">Back</button>
+    </a>
+    <h3 style="flex: 1; margin: 0;">StackSmash - Rust Actix Web</h3>
+  </div>
+
+  <div class="course-box" onclick="showCourseContent()">Start Rust Actix Course</div>
+
+  <div id="course-content" class="course-content">
+    <h2>Rust Actix Modules</h2>
+    <div id="modules"></div>
+    <button class="finish-course-button" onclick="finishCourse()">Finish Course</button>
+  </div>
+
+  <div id="certificate" class="certificate">
+    <h2>🎉 Certificate of Completion 🎉</h2>
+    <p>This certifies that you have completed the Rust Actix Web course.</p>
+    <ul>
+      <li>Rust Fundamentals</li>
+      <li>Building APIs with Actix</li>
+      <li>Web Security & Deployment</li>
+    </ul>
+    <p>Congratulations!</p>
+    <button onclick="window.print()">Print Certificate</button>
+  </div>
+
+  <script>
+    const moduleData = [
+      ["Introduction to Rust", "Rust is a fast, memory-safe systems programming language used in web backend, embedded, and CLI development."],
+      ["Installing Rust", "Use rustup: <div class='code-block'>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</div>"],
+      ["Your First Rust Program", "<div class='code-block'>fn main() {\n  println!(\"Hello, Rust!\");\n}</div>"],
+      ["Creating a Project", "<div class='code-block'>cargo new my_project\ncd my_project</div>"],
+      ["Add Actix-Web", "<div class='code-block'># In Cargo.toml\nactix-web = \"4.0\"</div>"],
+      ["Basic Actix Handler", "<div class='code-block'>use actix_web::{web, App, HttpServer, Responder};\n\nasync fn hello() -> impl Responder {\n    \"Hello Actix!\"\n}</div>"],
+      ["Setting Up HTTP Server", "<div class='code-block'>HttpServer::new(|| App::new().route(\"/\", web::get().to(hello)))\n    .bind(\"127.0.0.1:8080\")?\n    .run()\n    .await</div>"],
+      ["Routing in Actix", "Use <code>App::route()</code>, <code>web::scope()</code> for nested routing."],
+      ["Path & Query Params", "<div class='code-block'>web::Path<(String,)>, web::Query<MyQuery></div>"],
+      ["Request/Response Structs", "Use <code>serde</code> to parse JSON into/from structs."],
+      ["POST & JSON APIs", "<div class='code-block'>#[post(\"/api\")]\nasync fn api(data: web::Json<MyStruct>) -> impl Responder</div>"],
+      ["Error Handling", "Use Actix's <code>Result</code> + custom errors or built-in types."],
+      ["Middleware in Actix", "Add logging, authentication using <code>wrap()</code> method."],
+      ["Actix Web Forms", "Parse form data with <code>web::Form</code> and add validation."],
+      ["Actix WebSockets", "Real-time communication using <code>actix_web_actors::ws</code>."],
+      ["Database Integration", "Use Diesel, SQLx, or SeaORM with PostgreSQL/MySQL."],
+      ["Authentication (JWT)", "Verify and decode tokens for protected routes."],
+      ["Project Structure", "Organize with <code>handlers/</code>, <code>models/</code>, <code>routes/</code>, <code>main.rs</code>."],
+      ["Testing APIs", "<div class='code-block'>cargo test</div> or use tools like Postman for REST testing."],
+      ["Deployment", "Compile with <code>cargo build --release</code>, deploy with Docker or systemd."]
+    ];
+
+    const moduleContainer = document.getElementById("modules");
+    moduleData.forEach((mod, index) => {
+      const modDiv = document.createElement("div");
+      modDiv.className = "module";
+      modDiv.textContent = mod[0];
+      modDiv.setAttribute("onclick", `toggleModule(${index})`);
+
+      const modContent = document.createElement("div");
+      modContent.className = "module-content";
+      modContent.innerHTML = mod[1];
+
+      moduleContainer.appendChild(modDiv);
+      moduleContainer.appendChild(modContent);
+    });
+
+    function showCourseContent() {
+      document.querySelector('.course-box').style.display = 'none';
+      document.getElementById('course-content').style.display = 'block';
+    }
+
+    function toggleModule(index) {
+      const modules = document.querySelectorAll('.module-content');
+      const currentModule = modules[index];
+      modules.forEach((module, i) => {
+        if (i !== index) module.style.display = 'none';
+      });
+      currentModule.style.display = currentModule.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function finishCourse() {
+      document.getElementById('course-content').style.display = 'none';
+      document.getElementById('certificate').style.display = 'block';
+    }
+  </script>
+</body>
+</html> 
