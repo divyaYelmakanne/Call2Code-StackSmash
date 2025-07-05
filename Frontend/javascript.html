@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StackSmash - JavaScript Course</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f3f4f6;
+      text-align: center;
+    }
+    .header {
+      width: 100%;
+      background: #1e3a8a;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .back-button {
+      position: absolute;
+      left: 20px;
+      background: #f59e0b;
+      color: white;
+      padding: 10px;
+      width: 80px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .course-box {
+      background-color: #60a5fa;
+      color: white;
+      padding: 20px;
+      margin: 80px auto 20px auto;
+      border-radius: 10px;
+      cursor: pointer;
+      max-width: 400px;
+    }
+    .course-content {
+      display: none;
+      text-align: left;
+      margin: 30px auto;
+      max-width: 800px;
+    }
+    .module {
+      background-color: #2563eb;
+      color: white;
+      padding: 14px;
+      margin: 8px 0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .module-content {
+      display: none;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: white;
+    }
+    .code-block {
+      background-color: #1f2937;
+      color: #f3f4f6;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    .finish-course-button {
+      background-color: #10b981;
+      color: white;
+      padding: 15px 32px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      width: 180px;
+      margin: 30px auto 0 auto;
+      display: block;
+    }
+    .certificate {
+      display: none;
+      width: 60%;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+    }
+    @media (max-width: 600px) {
+      .course-content, .certificate {
+        width: 98% !important;
+        padding: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="../index.html">
+      <button class="back-button">Back</button>
+    </a>
+    <h3 style="flex: 1; margin: 0;">StackSmash - JavaScript Dynamic Behavior</h3>
+  </div>
+
+  <div class="course-box" onclick="showCourseContent()">Start JavaScript Course</div>
+
+  <div id="course-content" class="course-content">
+    <h2>JavaScript Modules</h2>
+    <div id="modules"></div>
+    <button class="finish-course-button" onclick="finishCourse()">Finish Course</button>
+  </div>
+
+  <div id="certificate" class="certificate">
+    <h2>🎉 Certificate of Completion 🎉</h2>
+    <p>This is to certify that you have successfully completed the JavaScript course.</p>
+    <ul>
+      <li>JavaScript Syntax and Behavior</li>
+      <li>DOM Manipulation & Events</li>
+      <li>Functions and Async Programming</li>
+    </ul>
+    <p>Congratulations!</p>
+    <button onclick="window.print()">Print Certificate</button>
+  </div>
+
+  <script>
+    const moduleData = [
+      ["Introduction to JavaScript", "JavaScript is a scripting language for creating dynamic content on web pages."],
+      ["JavaScript Syntax", "Statements, variables, operators, and expressions form the basics of JS."],
+      ["Variables (var, let, const)", "Use 'let' and 'const' to declare block-scoped variables."],
+      ["Data Types", "JavaScript has types like string, number, boolean, null, undefined, object, symbol."],
+      ["Operators", "Arithmetic, assignment, comparison, logical, and more."],
+      ["Control Structures", "Use if, else, switch, for, while, and do-while loops."],
+      ["Functions", "Functions are reusable blocks of code declared using function keyword or arrow functions."],
+      ["Events", "JS responds to user actions like click, hover, scroll using event listeners."],
+      ["DOM Manipulation", "Access and modify HTML elements with document.getElementById, querySelector, etc."],
+      ["Arrays and Objects", "Store collections of data using arrays and key-value pairs using objects."],
+      ["String Methods", "Manipulate strings with methods like slice(), split(), replace(), etc."],
+      ["Array Methods", "Use push(), pop(), map(), filter(), reduce(), etc. for operations on arrays."],
+      ["Loops", "for, for..of, forEach for iteration. Use break/continue to control flow."],
+      ["Scope and Hoisting", "Understand how JS handles variable declarations and execution context."],
+      ["ES6+ Features", "Let/const, arrow functions, template literals, destructuring, etc."],
+      ["Callback Functions", "Functions passed as arguments to other functions for async flow."],
+      ["Promises", "Used for handling asynchronous operations with .then and .catch."],
+      ["Async/Await", "Modern syntax for handling promises and async flow in a readable manner."],
+      ["Try/Catch Error Handling", "Gracefully catch and handle runtime errors."],
+      ["Browser APIs", "Access built-in browser features like fetch, localStorage, geolocation, etc."]
+    ];
+
+    const moduleContainer = document.getElementById("modules");
+    moduleData.forEach((mod, index) => {
+      const modDiv = document.createElement("div");
+      modDiv.className = "module";
+      modDiv.textContent = mod[0];
+      modDiv.setAttribute("onclick", `toggleModule(${index})`);
+
+      const modContent = document.createElement("div");
+      modContent.className = "module-content";
+      modContent.innerHTML = `<p>${mod[1]}</p>`;
+
+      moduleContainer.appendChild(modDiv);
+      moduleContainer.appendChild(modContent);
+    });
+
+    function showCourseContent() {
+      document.querySelector('.course-box').style.display = 'none';
+      document.getElementById('course-content').style.display = 'block';
+    }
+    function toggleModule(index) {
+      const modules = document.querySelectorAll('.module-content');
+      const currentModule = modules[index];
+      modules.forEach((module, i) => {
+        if (i !== index) module.style.display = 'none';
+      });
+      currentModule.style.display = currentModule.style.display === 'block' ? 'none' : 'block';
+    }
+    function finishCourse() {
+      document.getElementById('course-content').style.display = 'none';
+      document.getElementById('certificate').style.display = 'block';
+    }
+  </script>
+</body>
+</html> 
